@@ -1,0 +1,753 @@
+{
+	"info": {
+		"_postman_id": "27126dfd-20ab-4876-9fd2-abd69cc187d6",
+		"name": "Github_rep",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Repository creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"cache-control is present\", function () {\r",
+							"    pm.response.to.have.header(\"cache-control\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Server\", function () {\r",
+							"    pm.response.to.have.header(\"Server\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"X-GitHub-Request-Id is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-GitHub-Request-Id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Date is present\", function () {\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "github.com"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"93\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"93\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "origin",
+						"value": "https://github.com"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "referer",
+						"value": "https://github.com/new"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "_octo=GH1.1.1626002265.1631434486; tz=Europe%2FKiev; _device_id=60669ba4d4dc51def3d6af2e49eab52e; tz=Europe%2FKiev; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; has_recent_activity=1; user_session=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; __Host-user_session_same_site=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; logged_in=yes; dotcom_user=NasypanyiVadym; _gh_sess=3ml369shauISj5XXW%2BE1djIYpFOeE8cDrHHYIPG37%2FVIfHvBbMeMeCd4YeZXw%2FhSORjFpOS8dDXH%2BlMuI9r%2Bdn1s1ZeobNUZmQ4RiGv6oGjRwKOpFXzZpb9KX0XaTpi7Msci%2BXbChbKaD4HyTxP4GA%2FPscRMS2Es3KqgzrDXXurXGt0EpVPHZRsWuLNbzMYekWdY2WLn%2BkA3YOOyLji2pmfiwFGsavdTuGUBhLozyNslSmJgHAb%2BPiWxGjmq3ejxhF3ZeoaguC5%2Fbrj3SG51HxYHyPPpW7Akypj43SYLHJ2DZESk3%2BXmGEHi7jhQJ1b2ygtwDtrfP2xylRPTlXXiM0IZbBi4%2BgbvmOa%2FQpttZryXlohXOwx1eKgians0YUWV4uTpRqllJiI52Ek9UaQsSkvEjrrN1Y%2FHV9YhiqnUnPcTDshqfJxanSMUdSVTAhgK5EhnkLGBjEZGiID7%2BI5RI8%2B1eIluy9BYCTFIIzLE%2Bvejf7X0xvdNXAq3mxGk2ccR60UXea1nXYG58%2BBVyEiSeGWkJ4CvIEuV%2F9pyc%2BgeRbq%2BzxekxuQpmQohZiAchjGnlgTx0RRea80HSoS5zdhUo0B3OuWIf2roOx3OVL%2Fy5O2FIcymLPJRWfdBv4aQZgLV0dXT7CblYM3vr6zoWlZHXQKXWe7hYQ6y9XBHa%2B5JKX4AmoZHHZIfOZCEngdnJvUPFLRZd2xLDL1nNjDHQjK0TlqlNtTZXKMTs%2BX5GDuY3hIW7gq6acpsOU6rfbz8I4Q7uqLS1ThDMZRMYHsU--%2BRaUIXCAWSduZ2Pw--wNDcdVSPV0nFyE2m90qR6w%3D%3D"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authenticity_token",
+							"value": "{{auth_token_new_repo}}",
+							"type": "text"
+						},
+						{
+							"key": "owner",
+							"value": "{{repo_owner}}",
+							"type": "text"
+						},
+						{
+							"key": "repository[name]",
+							"value": "{{repo_name}}",
+							"type": "text"
+						},
+						{
+							"key": "repository[description]",
+							"value": "{{repo_desc}}",
+							"type": "text"
+						},
+						{
+							"key": "repository[visibility]",
+							"value": "public",
+							"type": "text"
+						},
+						{
+							"key": "repository[auto_init]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "repository[gitignore_template]",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "repository[license_template]",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{global_url}}/repositories",
+					"host": [
+						"{{global_url}}"
+					],
+					"path": [
+						"repositories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File for new repo creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202,200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "github.com"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"93\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"93\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "origin",
+						"value": "https://github.com"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "referer",
+						"value": "https://github.com/NasypanyiVadym/Postman-test/new/main"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "_octo=GH1.1.1626002265.1631434486; tz=Europe%2FKiev; _device_id=60669ba4d4dc51def3d6af2e49eab52e; tz=Europe%2FKiev; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; has_recent_activity=1; user_session=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; __Host-user_session_same_site=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; logged_in=yes; dotcom_user=NasypanyiVadym; _gh_sess=5DPpETpkM3N5A2OH6Sxq2scKWUmTEvrsfOtPowZ%2BZr%2BPgoChya1%2Bsq5ZGq%2BxNoHQC18FH1LuX871IRIzfxQTZUIdbtvT3Ag7Amt%2FOPJ2Er5UhMsDepcAQAhpomWK4Bms3t4WfsT%2FZn3k%2BhMmtUuXc7LSiLKm12BiDGcdg7XRvRr3cfVmCipL6UGOEc7Eys84xm%2BT1BODsjAYnO64WiBuHST0%2B%2BArvDWZ3pRY1Q8lMphSOv%2BpMiNggcABe1i0bPzyBWHXXpAFBe4MMUprUuEksziyuYJw7lh7XWkObsodQ%2B5bhHmzhahCtRWbM2GMcxAtFhMXtUmUBGcvCIG9MMuvwelm1ad0zfKBOduZ%2BZlEh0xMXxbsGXWAzN%2BLxUVHpNpN2ksPcEJdCXmYO%2B%2B4oJ9W3JOe%2BDpVtl1RqFiqtpAATKFCLFt7UKzPIIOcWyJgZ46leO0%2BnT9Vjs%2Fmrp6g9f0MkIJxmzBCd2zUrPwoEewfT%2BSatqQJ6%2BoETQo1z3p968QH0U7Ks6G6RRblAG1abZrFWFMahk%2FF33mIyolMVzrJb%2FbhI63nvUPEWa%2BMJ8SHqvM8wukh0j%2BvvQLqFGa%2Ft2oIK3grWr0mDFgw9H1v4Vtx77bslqR%2FyCpqfiZyj%2Bj1lS%2F4Lj4ze%2BoNvYmnIdZ4ayuitg%2BbAWe2%2BIPjWevEKrJWHm98JpnHjTpSD6r6OSuv0HbfYtmy2LTMZ8LcEBi1jNj9z2sF1TQ3g%2Bpt6sJHEKtnGNNLRg7duxhds%2BgDFBXj1Has4OdTVhlpbglKEV0O%2FCLg9hsYV%2BUS0i1KSLbIPmH4IW6la7SfO6ukOoIEtS%2Bw9I%2Fx3VxEbmkCHG3ZRj0BaEHPFyotCrOx79%2Bwj7Y7SvUDUzfku5Dpz%2BsjH1rXrI8DwTNhBgscaR%2B%2BEpUnSL9fa71bwY8OfG6jiP47Sl%2BhB6UBVwU%3D--5bPMobC3bmBKoD4x--eoAhFP1co4CxCx6MEeF4Vg%3D%3D"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authenticity_token",
+							"value": "{{auth_token_new_file}}",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "{{file_name}}",
+							"type": "text"
+						},
+						{
+							"key": "new_filename",
+							"value": "{{file_name}}",
+							"type": "text"
+						},
+						{
+							"key": "content_changed",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "{{file_content}}",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "{{file_commit_message}}",
+							"type": "text"
+						},
+						{
+							"key": "placeholder_message",
+							"value": "{{submit_msg_title}}",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "{{submit_msg_desc}}",
+							"type": "text"
+						},
+						{
+							"key": "commit",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "pr",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{global_url}}/{{repo_owner}}/{{repo_name}}/create/main",
+					"host": [
+						"{{global_url}}"
+					],
+					"path": [
+						"{{repo_owner}}",
+						"{{repo_name}}",
+						"create",
+						"main"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Import of existed repo files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202,200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "github.com"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"93\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"93\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "origin",
+						"value": "https://github.com"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "referer",
+						"value": "https://github.com/NasypanyiVadym/Postman-test/import"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "_octo=GH1.1.1626002265.1631434486; tz=Europe%2FKiev; _device_id=60669ba4d4dc51def3d6af2e49eab52e; tz=Europe%2FKiev; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; has_recent_activity=1; user_session=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; __Host-user_session_same_site=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; logged_in=yes; dotcom_user=NasypanyiVadym; _gh_sess=KUlawMncY4%2B7%2FK4Iv0ZhRFrlQ%2FJXb76yB28lvNCdBGcv6ilbgX3%2FbU6QjLBCGDEi3g%2BYaX5X6XZx30IZa%2BPKJwckd0dqALPVP9IY2wWpJdecJE2Ly6NRj7JUYMj%2BzRrv%2FlfNWVdfqeZAQaX7w6q7htkEEEr9lF9oRM96oQ5HC7pL5%2FDvl%2F53C4YAagnEG3C%2FTjoflyuWUNmOUpW0y5jRIsDBmGxDxKFZeGhcZhBMw%2B2V1hz58B017FUpIuKGomt%2F%2B4k%2FK2luZ%2BbSfldoW5xDx97OXUe5QEJPemjs3%2FfWLLVWZoiPE2D8VYeszqjSNZ1Q2WvW12KOkoXVrBsGVB90TVb2H7vfjnTieuDNEI0ty%2FrLXfsBp%2BCPuJt204veufxPcnIrkFeeF9CsMLmfXVtQzBITAdWRYmkQ70ocob8bfSh8m8RW2%2BTPEi4nT86dIFQGErjXog%3D%3D--vY%2Bj9mJeYHaePzPx--kNkM1h2EJWEYSUhYSns01w%3D%3D"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_method",
+							"value": "patch",
+							"type": "text"
+						},
+						{
+							"key": "authenticity_token",
+							"value": "{{auth_token_repo_import}}",
+							"type": "text"
+						},
+						{
+							"key": "vcs_url",
+							"value": "{{imported_repo_url}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{global_url}}/{{repo_owner}}/{{repo_name}}/import",
+					"host": [
+						"{{global_url}}"
+					],
+					"path": [
+						"{{repo_owner}}",
+						"{{repo_name}}",
+						"import"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New project creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202,200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "github.com"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"93\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"93\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "origin",
+						"value": "https://github.com"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "referer",
+						"value": "https://github.com/new/project"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "_octo=GH1.1.1626002265.1631434486; tz=Europe%2FKiev; _device_id=60669ba4d4dc51def3d6af2e49eab52e; tz=Europe%2FKiev; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; has_recent_activity=1; user_session=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; __Host-user_session_same_site=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; logged_in=yes; dotcom_user=NasypanyiVadym; _gh_sess=X7V3AFcEFrn1VesPtbzerKlQccHho0fE3dyDMk7M1l6spjvKcn3yZ6XQ39ybi3gUH0UJjVuiOacQ4Zo9v0YM7WsJcANBU5noVIlk1eJsWLJ%2BayrKNxtnouTKKCtH4E29147mKN1NmjUtLhQ1ogIcBPVKbXfbXN7YW1jASXZtHhMdlhwRMq%2FR8StVLKp72EmwjUaslMPqkCR1eDwCPhwjYD4GjUw7zKq910BGQFphob%2FtlrA4E1400ZDL0anhdtF5vGqrQdkCp9R7m2QHDC2u7LbsXSV92%2B72VH3eroXN%2FvRClcjSzzirdk%2Bi148wPqn2IEP41j4rZtUtfsQnfWOPUagc%2BlXgTmx7H8bBVn7MFchiWAZG02OlmG%2FJ80Mx4PY1PXweUnm1WzY1cAAXYOJUqnFY2OhjS%2B1z11U3%2BEqghc6YYQPQ2ULgRmD%2FXGq%2B16%2FVhjZag7RX1%2FWCgNt2Jo7xC%2Fwr%2Bo0xjk2WrL42mvtVURsYzyFkMAQO%2FxcsYxa9wQKQil3wDlabxzV%2F7EQjplqKGmBPkwjzuLz7kuZD%2F00a37Xq7v8Iof3WpXajhURVrdTUa8VEJfX%2BwZAR4noDXRXAzE%2FvvE6GpV29Zg2J2XCjmbpGwQLsvq%2FhFHqJJlBcP%2FmweHPDUGD04qloDehW7sYAG0MN%2BUDrkxLv1eeiBYPkgk9x0BzPj6J2cusBNEcAyfmnTu4RpgSTxNFTVJBHG1LmitZXy23Zzxy7h3uTjmR0KOGTxDCag1t6QStR49TjMtHqaBMcHPrHelc8Ng1yWeCAxAI%2BOJumsX7nMquOqSiDDoFw2voS2n1PQMDD9Mxi6HBYxEdm3GZAvxA4VLZxP%2FpGGC%2B%2Bhw8JPQcQNfu%2FIhySIUpdvIwvzWan37lNFT%2FRpgCZVK0rZ%2BJdJexb5YOamOc7LTEerTwywcKPjoPBVq4E06eMtT0kbM9arw%3D%3D--tdqZNHAQc%2FVyxDTk--j4uRwZ%2FPiDqMC3OEwSp3zw%3D%3D"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authenticity_token",
+							"value": "{{auth_token_new_project}}",
+							"type": "text"
+						},
+						{
+							"key": "client_uid",
+							"value": "undefined",
+							"type": "text"
+						},
+						{
+							"key": "project[name]",
+							"value": "{{project_title}}",
+							"type": "text"
+						},
+						{
+							"key": "project[body]",
+							"value": "{{project_desc}}",
+							"type": "text"
+						},
+						{
+							"key": "project_template",
+							"value": "NONE",
+							"type": "text"
+						},
+						{
+							"key": "project[public]",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{global_url}}/users/{{repo_owner}}/projects",
+					"host": [
+						"{{global_url}}"
+					],
+					"path": [
+						"users",
+						"{{repo_owner}}",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Repository deleting ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202,200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "github.com"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"93\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"93\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "origin",
+						"value": "https://github.com"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "referer",
+						"value": "https://github.com/NasypanyiVadym/Postman-test/settings"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "_octo=GH1.1.1626002265.1631434486; tz=Europe%2FKiev; _device_id=60669ba4d4dc51def3d6af2e49eab52e; tz=Europe%2FKiev; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; has_recent_activity=1; user_session=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; __Host-user_session_same_site=EFafpB8CdoMzmEcc6kEtvLbm1giUDmWt-Zw45_8dzOVIhwKf; logged_in=yes; dotcom_user=NasypanyiVadym; _gh_sess=PcJq%2FRbXoBPJ6QcGXv%2F%2Fofkzqrmrhj3UuMKvEDQo%2BUiERxthkklc183w%2FXkTl5ujvylVTfCesSrfJ9z6OgcvugDAnPx7%2FECkt3tuo1l48qBSfmJAHO4LKvdMYPMESWm30KzzfwpgFMvnsGCsfKSjtmaT1suLwgvsZhWUxxt%2Ba6p2mlBaRUzj%2Fule%2FDmJ70K5tajTr01ScPHQatefPMMPpBOvB1uP%2FaPdNSWMnhxJE5E8sFwM39QUWzI9UY0qQAOVpOVBCLpNti0aUeUqlzLETJHsFwb0yUedfkcva12LmjY4n%2BaJTCmsLfo0IiPHMCE%2F%2F5TL9zQpJkGktG%2BSV2or5p3UP5CB2p0IvXQkU%2FRIWV976Gn5raXXkeljkVM3rK2ekAbYWG0Nq19qSkqEPUC5q7qshwaW6hb0FYAJ1hXKz4F1D7bjHTWIxvKs%2FU%2Fxa48WfKrFmZGTbXFeiaYSgv%2FcKSZqR9kiQDo0vNEQPhUGKQwk2GGTJOq5wN2KwAGQHwG1LEhhidIEbCmDf5GDElu%2Bw8P9butDJoa4gjxrHonsc7jU7FoHJjKkhFJ0MtSOdSr6sLHtA9Yky9E1LbxK810DZb3WsAaJgp5AkOjyLZqm9Lq2VyzqZ8F2aLfmeE3AURNPwruPlaHT3WXwpc7DcbHS1gCGH6f3ffMcXmMZ7ywg00HS4Q6quD%2BNdnquHUE1aM3eNFGljp9yaxWBAjvE5ZTMubqRv9vazlido4rrgaH%2FG58hhdVwL0AhfbWnp%2BcyDJIRUxmoWdmGWr4%3D--zUjzVz4tgarua7K6--Xb%2BYm6k0YbC%2FZPJYieG6Sg%3D%3D"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_method",
+							"value": "delete",
+							"type": "text"
+						},
+						{
+							"key": "authenticity_token",
+							"value": "{{auth_token_repo_del}}",
+							"type": "text"
+						},
+						{
+							"key": "verify",
+							"value": "{{repo_owner}}/{{repo[name]}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{global_url}}/{{repo_owner}}/{{repo_name}}/settings/delete",
+					"host": [
+						"{{global_url}}"
+					],
+					"path": [
+						"{{repo_owner}}",
+						"{{repo_name}}",
+						"settings",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
